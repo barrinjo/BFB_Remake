@@ -9,6 +9,7 @@ using std::string;
 string response(string loc);
 
 string response(string loc) {
+        // specialCase(loc);
         std::ifstream rFile("response_1.txt");
         string line;
         if(rFile.is_open()) {
@@ -24,7 +25,13 @@ string response(string loc) {
         } else {
                 return "file missing: response_1.txt";
         }
-        return "xxx";
+        return "SORRY, I DO NOT UNDERSTAND";
 }
+
+// void specialCase(std::string input) {
+//         if(input == "QUIT") {
+//                 return 0;
+//         }
+// }
 
 #endif

@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-#include "main.h"
+#include "input.h"
 
 bool gameLoop();
 string getInput();
@@ -17,7 +17,7 @@ void startGame() {
 bool gameLoop() {
         bool exitFlag = false;
         while(!exitFlag) {
-                std::cout << response(getInput()) << std::endl;
+                splitInput(getInput());
         }
         return 0;
 }

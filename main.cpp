@@ -1,4 +1,4 @@
-#include "main.h"
+#include "input.h"
 #include "loop.h"
 
 int main(int argc, char const *argv[])

@@ -36,12 +36,20 @@ string response(string verb, string noun) {
 }
 
 void splitInput(string input) {
-        size_t n;
-        n = input.find(" ");
-        if (n!=string::npos)
-        {
-                verb = input.substr(0, n);
-                noun = input.substr(n + 1);
+        string spaceHold = input;
+        size_t found = spaceHold.find(" ");
+        if (found!=string::npos) {
+                size_t n;
+                n = input.find(" ");
+                if (n!=string::npos)
+                {
+                        verb = input.substr(0, n);
+                        noun = input.substr(n + 1);
+                }
+        }
+        else {
+                verb=input;
+                noun=input;
         }
         std::cout << response(verb, noun) << std::endl;
 }

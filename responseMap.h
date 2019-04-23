@@ -8,5 +8,6 @@ std::map<std::string, bool> responseMap;
 void initMap(void) {
         responseMap["fStone"] = 0;
         responseMap["fNorth"] = 0;
+        responseMap["fLock"] = 0;
 }
 #endif

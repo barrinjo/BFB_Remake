@@ -55,7 +55,7 @@ void splitInput(string input) {
         }
         else {
                 verb=input;
-                noun=input;
+                noun="input";
         }
         std::cout << response(verb, noun) << std::endl;
 }
@@ -73,14 +73,19 @@ string lineCheck(int i) {
                 if(line[0] == 's') {
                         loadLevel(loadedFile[i].erase(0,1));
                 } else {
-                        string print = loadedFile[i];
+                        int temp = i;
+                        responseAction(++i);
+                        string print = loadedFile[temp];
                         return print.erase(0,1);
                 }
         } else {
                 int flag = 0;
+                int goal = 0 + responseMap[line];
+                int goalCount = 2;
+                i++;
                 while(true) {
                         if(loadedFile[i][0] == '\"') {
-                                if(flag == responseMap[line])  {
+                                if(flag == goal)  {
                                         int temp = i;
                                         responseAction(++i);
                                         string print = loadedFile[temp];
@@ -89,6 +94,9 @@ string lineCheck(int i) {
                                 else {
                                         flag++;
                                 }
+                        } else if (loadedFile[i][0] == 'f') {
+                                goal += goalCount * responseMap[loadedFile[i]];
+                                goalCount *= 2;
                         }
                         i++;
                 }

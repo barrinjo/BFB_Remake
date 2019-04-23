@@ -41,6 +41,7 @@ void loadLevel(std::string fileName) {
                         loadedFile.push_back(line);
                 }
         }
+        std::cout << loadedFile[0] <<std::endl;
         gameLoop();
 }
 

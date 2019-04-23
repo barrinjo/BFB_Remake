@@ -13,24 +13,20 @@ string response(string verb, string noun);
 
 string response(string verb, string noun) {
         // specialCase(loc);
-        std::ifstream rFile("response_1.txt");
-        string line;
-        if(rFile.is_open()) {
-                bool verb_flag = false;
-                bool flag = false;
-                while(getline(rFile ,line)) {
-                        if(flag) {
-                                return line;
-                        }
-                        if(line == verb) {
-                            verb_flag = true;    
-                        }
-                        if(verb_flag && line == noun) {
-                                flag = true;
-                        }
+        bool verb_flag = false;
+        bool flag = false;
+        int i = 0;
+        while(true) {
+                std::string line = loadedFile[i++];
+                if(flag) {
+                        return line;
                 }
-        } else {
-                return "file missing: response_1.txt";
+                if(line == verb) {
+                    verb_flag = true;
+                }
+                if(verb_flag && line == noun) {
+                        flag = true;
+                }
         }
         return "SORRY, I DO NOT UNDERSTAND";
 }

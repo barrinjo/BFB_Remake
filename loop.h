@@ -3,13 +3,18 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <vector>
 
+#include "global.h"
 #include "input.h"
 
 bool gameLoop();
 string getInput();
+void loadLevel(std::string fileName);
 
 void startGame() {
+        loadLevel("response_1.txt");
         std::cout << "WELCOME TO BLEAKFALLS BARROW!" << std::endl;
         gameLoop();
 }
@@ -27,6 +32,16 @@ string getInput() {
         std::string line;
         getline(std::cin, line);
         return line;
+}
+
+void loadLevel(std::string fileName) {
+        std::string line;
+        std::ifstream file(fileName);
+        if(file.is_open()) {
+                while(getline(file, line)) {
+                        loadedFile.push_back(line);
+                }
+        }
 }
 
 #endif

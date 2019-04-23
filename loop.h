@@ -8,15 +8,13 @@
 
 #include "global.h"
 #include "input.h"
-#include "input.h"
-#include "mapTest.h"
+#include "responseMap.h"
 
 bool gameLoop();
-string getInput();
-void loadLevel(std::string fileName);
+std::string getInput();
 
 void startGame() {
-        loadLevel("response_1.txt");
+        loadLevel("startRoom.txt");
         initMap();
         std::cout << "WELCOME TO BLEAKFALLS BARROW!" << std::endl;
         gameLoop();
@@ -33,11 +31,17 @@ bool gameLoop() {
 void loadLevel(std::string fileName) {
         std::string line;
         std::ifstream file(fileName);
+        for(int i = 0; i < loadedFile.size(); i++) {
+                loadedFile.pop_back();
+        }
+        loadedFile.clear();
         if(file.is_open()) {
                 while(getline(file, line)) {
+                        // std::cout << line << std::endl;
                         loadedFile.push_back(line);
                 }
         }
+        gameLoop();
 }
 
 #endif

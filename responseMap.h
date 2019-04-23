@@ -6,7 +6,7 @@
 std::map<std::string, bool> responseMap;
 
 void initMap(void) {
-        responseMap["fWest"] = 0;
-        responseMap["fEast"] = 0;
+        responseMap["fStone"] = 0;
+        responseMap["fNorth"] = 0;
 }
 #endif

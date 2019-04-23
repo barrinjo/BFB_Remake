@@ -1,3 +1,4 @@
+#include "global.h"
 #include "input.h"
 #include "loop.h"
 

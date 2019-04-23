@@ -1,0 +1,5 @@
+LOOK
+"YOU'RE IN A NEW ROOM
+
+MOVE
+sstartRoom.txt

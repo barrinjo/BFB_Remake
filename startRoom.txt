@@ -37,4 +37,8 @@ DOOR
 fStone
 "YOU NEED THE STONE FOR THIS
 "HEY YOU USED THE DOOR
+ssecondRoom.txt
 "
+
+MOVE
+ssecondRoom.txt

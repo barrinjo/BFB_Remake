@@ -6,7 +6,8 @@
 #include<string>
 
 #include "global.h"
-#include "mapTest.h"
+#include "responseMap.h"
+#include "loop.h"
 
 using std::string;
 
@@ -69,10 +70,13 @@ string getInput() {
 string lineCheck(int i) {
         string line = loadedFile[i];
         if(line[0] != 'f') {
-                string print = loadedFile[i];
-                return print.erase(0,1);
-        }
-        else {
+                if(line[0] == 's') {
+                        loadLevel(loadedFile[i].erase(0,1));
+                } else {
+                        string print = loadedFile[i];
+                        return print.erase(0,1);
+                }
+        } else {
                 int flag = 0;
                 while(true) {
                         if(loadedFile[i][0] == '\"') {
@@ -94,6 +98,8 @@ string lineCheck(int i) {
 
 void responseAction(int i) {
         while(loadedFile[i][0] != '\"') {
+                if(loadedFile[i][0] == 's')
+                        loadLevel(loadedFile[i].erase(0,1));
                 if(loadedFile[i][0] == 't' || loadedFile[i][0] == 'n') {
                         bool newValue;
                         if(loadedFile[i][0] == 't')
@@ -103,9 +109,9 @@ void responseAction(int i) {
                         string value = loadedFile[i];
                         value[0] = 'f';
                         responseMap[value] = newValue;
-                }
-                else
+                } else {
                         std::cout << loadedFile[i] << std::endl;
+                }
                 i++;
         }
 }

@@ -53,7 +53,7 @@ void splitInput(string input) {
                 }
         }
         else {
-                verb="noverb";
+                verb=input;
                 noun=input;
         }
         std::cout << response(verb, noun) << std::endl;
@@ -69,9 +69,7 @@ string getInput() {
 string lineCheck(int i) {
         string line = loadedFile[i];
         if(line[0] != 'f') {
-                int temp = i;
-                responseAction(++i);
-                string print = loadedFile[temp];
+                string print = loadedFile[i];
                 return print.erase(0,1);
         }
         else {

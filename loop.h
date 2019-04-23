@@ -8,6 +8,8 @@
 
 #include "global.h"
 #include "input.h"
+#include "input.h"
+#include "mapTest.h"
 
 bool gameLoop();
 string getInput();
@@ -15,6 +17,7 @@ void loadLevel(std::string fileName);
 
 void startGame() {
         loadLevel("response_1.txt");
+        initMap();
         std::cout << "WELCOME TO BLEAKFALLS BARROW!" << std::endl;
         gameLoop();
 }
@@ -25,13 +28,6 @@ bool gameLoop() {
                 splitInput(getInput());
         }
         return 0;
-}
-
-string getInput() {
-        std::cout << "TELL ME WHAT TO DO?" << std::endl;
-        std::string line;
-        getline(std::cin, line);
-        return line;
 }
 
 void loadLevel(std::string fileName) {

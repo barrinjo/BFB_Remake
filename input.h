@@ -118,7 +118,7 @@ void responseAction(int i) {
                         value[0] = 'f';
                         responseMap[value] = newValue;
                 } else {
-                        std::cout << loadedFile[i] << std::endl;
+                        // std::cout << loadedFile[i] << std::endl;
                 }
                 i++;
         }

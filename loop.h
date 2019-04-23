@@ -15,7 +15,6 @@ std::string getInput();
 
 void startGame() {
         loadLevel("startRoom.txt");
-        initMap();
         std::cout << "WELCOME TO BLEAKFALLS BARROW!" << std::endl;
         gameLoop();
 }
@@ -41,7 +40,7 @@ void loadLevel(std::string fileName) {
                         loadedFile.push_back(line);
                 }
         }
-        std::cout << loadedFile[0] <<std::endl;
+        initMap();
         gameLoop();
 }
 

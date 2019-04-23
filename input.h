@@ -8,6 +8,7 @@
 #include "global.h"
 #include "responseMap.h"
 #include "loop.h"
+#include "dictionary.h"
 
 using std::string;
 
@@ -28,11 +29,15 @@ string response(string verb, string noun) {
                         return lineCheck(i);
                 }
                 if(line == verb) {
-                    verb_flag = true;
+                        if(noun == "input") {
+                                flag = true;
+                        }
+                         verb_flag = true;
                 }
-                if(verb_flag && line == noun) {
+                if(line == "STOP")
+                        verb_flag = false;
+                if(verb_flag && line == noun)
                         flag = true;
-                }
                 i++;
                 if(i == loadedFile.size()-1) {
                         if(!verb_flag && !flag)
@@ -57,7 +62,7 @@ void splitInput(string input) {
                 verb=input;
                 noun="input";
         }
-        std::cout << response(verb, noun) << std::endl;
+        std::cout << "\033[2J\033[1;1H" << response(lookup(verb), lookup(noun)) << std::endl;
 }
 
 string getInput() {
@@ -102,6 +107,7 @@ string lineCheck(int i) {
                 }
                 // return responseMap[loadedFile[i]] + 1;
         }
+        return "XXX";
 }
 
 void responseAction(int i) {

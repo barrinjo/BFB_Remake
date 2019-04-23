@@ -9,14 +9,14 @@
 #include "global.h"
 #include "input.h"
 #include "responseMap.h"
+#include "dictionary.h"
 
 bool gameLoop();
 std::string getInput();
 
 void startGame() {
-        loadLevel("startRoom.txt");
         std::cout << "WELCOME TO BLEAKFALLS BARROW!" << std::endl;
-        gameLoop();
+        loadLevel("startRoom.txt");
 }
 
 bool gameLoop() {
@@ -41,6 +41,7 @@ void loadLevel(std::string fileName) {
                 }
         }
         initMap();
+        initDictionary();
         gameLoop();
 }
 

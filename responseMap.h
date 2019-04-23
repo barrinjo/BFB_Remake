@@ -6,7 +6,7 @@
 
 std::map<std::string, bool> responseMap;
 
-void initMap(void) {
+int initMap() {
         int i = 0;
         std::string line = loadedFile[i];
         while(line[0] == 'f') {
@@ -14,5 +14,7 @@ void initMap(void) {
                 line = loadedFile[++i];
         }
         std::cout << line << std::endl;
+        return 0;
 }
+
 #endif

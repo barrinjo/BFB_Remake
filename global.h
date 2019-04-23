@@ -10,5 +10,6 @@ void splitInput(std::string input);
 std::string verb, noun;
 bool hard_flag;
 std::vector<std::string> loadedFile;
+std::vector< std::vector<std::string> > dictionary;
 
 #endif

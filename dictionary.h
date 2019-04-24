@@ -11,7 +11,6 @@
 std::string lookup(std::string line);
 
 void initDictionary() {
-        std::cout << "what" << std::endl;
         std::ifstream file("dictionary.txt");
         std::string line;
         if(file.is_open()) {
@@ -24,7 +23,6 @@ void initDictionary() {
                             temp.clear();
                         }
                 }
-                std::cout << "dicitonary initialized" << std::endl;
         } else {
                 std::cout << "dictionary.txt missing" << std::endl;
         }

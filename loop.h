@@ -40,7 +40,7 @@ void loadLevel(std::string fileName) {
                         loadedFile.push_back(line);
                 }
         }
-        initMap();
+        initMap(fileName);
         initDictionary();
         gameLoop();
 }

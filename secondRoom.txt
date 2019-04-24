@@ -1,7 +1,15 @@
+fTest
 THE ROOM AROUND ME IS VERY SMALL AND BORING.
 
 LOOK
 "YOU'RE IN A NEW ROOM
+"
 
-MOVE
+STOP
+
+GO
+fTest
+"I DON'T WANT TO GO BACK
+tTest
+"
 sstartRoom.txt

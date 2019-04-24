@@ -13,6 +13,7 @@
 
 bool gameLoop();
 std::string getInput();
+void loadCardinal();
 
 void startGame() {
         std::cout << "WELCOME TO BLEAKFALLS BARROW!" << std::endl;
@@ -22,9 +23,18 @@ void startGame() {
 bool gameLoop() {
         bool exitFlag = false;
         while(!exitFlag) {
+                // std::cout << "\033[2J\033[1;1H" << std::flush;
+                loadCardinal();
                 splitInput(getInput());
         }
         return 0;
+}
+
+void loadCardinal() {
+        std::cout << cardinalResponse('N') << std::endl;
+        std::cout << cardinalResponse('S') << std::endl;
+        std::cout << cardinalResponse('E') << std::endl;
+        std::cout << cardinalResponse('W') << std::endl;
 }
 
 void loadLevel(std::string fileName) {

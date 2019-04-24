@@ -62,7 +62,7 @@ void splitInput(string input) {
                 verb=input;
                 noun="input";
         }
-        std::cout << "\033[2J\033[1;1H" << response(lookup(verb), lookup(noun)) << std::endl;
+        std::cout << response(lookup(verb), lookup(noun)) << std::endl;
 }
 
 string getInput() {
@@ -108,6 +108,34 @@ string lineCheck(int i) {
                 // return responseMap[loadedFile[i]] + 1;
         }
         return "XXX";
+}
+
+string cardinalResponse(char target) {
+        int i = 0;
+        int flag = 0;
+        int goal = 0;
+        int goalCount = 1;
+        while(true) {
+                if(loadedFile[i][0] == target) {
+                        while(true) {
+                                if(loadedFile[i][0] == 'f') {
+                                        goal += goalCount * responseMap[loadedFile[i]];
+                                        goalCount *= 2;
+                                }
+                                if(loadedFile[i][0] == '\"') {
+                                        if(flag == goal) {
+                                                string print = loadedFile[i];
+                                                return print.erase(0,1);
+                                        }
+                                        else {
+                                                flag++;
+                                        }
+                                }
+                                i++;
+                        }
+                }
+                i++;
+        }
 }
 
 void responseAction(int i) {

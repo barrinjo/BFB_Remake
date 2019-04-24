@@ -6,6 +6,7 @@
 
 void loadLevel(std::string fileName);
 void splitInput(std::string input);
+std::string cardinalResponse(char target);
 
 std::string verb, noun;
 bool hard_flag;

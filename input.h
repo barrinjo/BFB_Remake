@@ -22,6 +22,9 @@ string response(string verb, string noun) {
         bool verb_flag = false;
         bool flag = false;
         int i = 0;
+        if(verb == "QUIT") {
+                exitFlag = true;
+        }
         while(true) {
                 std::string line = loadedFile[i];
                 if(flag) {
@@ -46,7 +49,7 @@ string response(string verb, string noun) {
         }
 }
 
-void splitInput(string input) {
+string splitInput(string input) {
         string spaceHold = input;
         size_t found = spaceHold.find(" ");
         if (found!=string::npos) {
@@ -62,21 +65,22 @@ void splitInput(string input) {
                 verb=input;
                 noun="input";
         }
-        std::cout << response(lookup(verb), lookup(noun)) << std::endl;
+        return response(lookup(verb), lookup(noun));
 }
 
 string getInput() {
-        std::cout << "TELL ME WHAT TO DO?" << std::endl;
         std::string line;
         getline(std::cin, line);
-        return line;
+        lastInput = line;
+        return splitInput(line);
 }
 
 string lineCheck(int i) {
         string line = loadedFile[i];
         if(line[0] != 'f') {
                 if(line[0] == 's') {
-                        loadLevel(loadedFile[i].erase(0,1));
+                        levelName = loadedFile[i].erase(0,1);
+                        newLevel = true;
                 } else {
                         int temp = i;
                         responseAction(++i);
@@ -141,7 +145,8 @@ string cardinalResponse(char target) {
 void responseAction(int i) {
         while(loadedFile[i][0] != '\"') {
                 if(loadedFile[i][0] == 's')
-                        loadLevel(loadedFile[i].erase(0,1));
+                        levelName = loadedFile[i].erase(0,1);
+                        newLevel = true;
                 if(loadedFile[i][0] == 't' || loadedFile[i][0] == 'n') {
                         bool newValue;
                         if(loadedFile[i][0] == 't')

@@ -14,32 +14,66 @@
 bool gameLoop();
 std::string getInput();
 void loadCardinal();
+void typewriter(std::string);
 
 void startGame() {
         std::cout << "WELCOME TO BLEAKFALLS BARROW!" << std::endl;
-        loadLevel("startRoom.txt");
+        loadLevel();
 }
 
 bool gameLoop() {
-        bool exitFlag = false;
+        std::cout << "test" << std::endl;
+        // int turnCount = 0;
         while(!exitFlag) {
-                // std::cout << "\033[2J\033[1;1H" << std::flush;
+                if(newLevel == true) {
+                        loadLevel();
+                }
+                std::cout << "\033[2J\033[1;1H" << std::flush;
                 loadCardinal();
-                splitInput(getInput());
+                // if(!turnCount++) {
+                //         std::cout << "TELL ME WHAT TO DO? " << std::flush;
+                // }
+                if(lastInput != "") {
+                        std::cout << "TELL ME WHAT TO DO? " << lastInput << std::endl;
+                        typewriter(rString);
+                        std::cout << std::endl << "TELL ME WHAT TO DO? " << std::flush;
+                        rString = getInput();
+                } else {
+                        std::cout << "TELL ME WHAT TO DO? " << std::flush;
+                        rString = getInput();
+                }
         }
         return 0;
 }
 
-void loadCardinal() {
-        std::cout << cardinalResponse('N') << std::endl;
-        std::cout << cardinalResponse('S') << std::endl;
-        std::cout << cardinalResponse('E') << std::endl;
-        std::cout << cardinalResponse('W') << std::endl;
+void typewriter(std::string x) {
+        std::cout << "OK," << std::endl;
+        sleepMilli(500);
+        for(int i = 0; i < x.size(); i++) {
+                std::cout << x[i] << std::flush;
+                if(x[i] == '.') {
+                        sleepMilli(300);
+                }
+                if(x[i] == ',') {
+                        sleepMilli(150);
+                }
+                sleepMilli(20);
+        }
 }
 
-void loadLevel(std::string fileName) {
+void loadCardinal() {
+        using std::cout;
+        using std::endl;
+
+        cout << cardinalResponse('N') << endl;
+        cout << cardinalResponse('S') << endl;
+        cout << cardinalResponse('E') << endl;
+        cout << cardinalResponse('W') << endl;
+}
+
+void loadLevel() {
         std::string line;
-        std::ifstream file(fileName);
+        std::ifstream file(levelName);
         for(int i = 0; i < loadedFile.size(); i++) {
                 loadedFile.pop_back();
         }
@@ -50,8 +84,10 @@ void loadLevel(std::string fileName) {
                         loadedFile.push_back(line);
                 }
         }
-        initMap(fileName);
+        file.close();
+        initMap(levelName);
         initDictionary();
+        newLevel = false;
         gameLoop();
 }
 

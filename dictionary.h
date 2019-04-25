@@ -26,6 +26,7 @@ void initDictionary() {
         } else {
                 std::cout << "dictionary.txt missing" << std::endl;
         }
+        file.close();
 }
 
 std::string lookup(std::string line) {

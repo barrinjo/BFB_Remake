@@ -30,8 +30,8 @@ void initDictionary() {
 }
 
 std::string lookup(std::string line) {
-        for(int i = 0; i < dictionary.size(); i++) {
-                for(int j = 0; j < dictionary[i].size(); j++) {
+        for(unsigned int i = 0; i < dictionary.size(); i++) {
+                for(unsigned int j = 0; j < dictionary[i].size(); j++) {
                         if(line == dictionary[i][j])
                                 return dictionary[i][0];
                 }

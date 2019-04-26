@@ -23,7 +23,7 @@ string response(string verb, string noun) {
         // specialCase(loc);
         bool verb_flag = false;
         bool flag = false;
-        int i = 0;
+        unsigned int i = 0;
         if(verb == "QUIT") {
                 exitFlag = true;
                 return "THANKS FOR PLAYING!";
@@ -49,8 +49,7 @@ string response(string verb, string noun) {
                         flag = true;
                 i++;
                 if(i == loadedFile.size()-1) {
-                        if(!verb_flag && !flag)
-                                return "I CAN'T DO THAT.";
+                        return "I CAN'T DO THAT.";
                 }
         }
 }
@@ -69,7 +68,7 @@ string splitInput(string input) {
         }
         else {
                 verb=input;
-                noun="input";
+                noun=input;
         }
         return response(lookup(verb), lookup(noun));
 }
@@ -86,7 +85,6 @@ string lineCheck(int i) {
         std::cout << line << std::endl;
         if(line[0] != 'f') {
                 if(line[0] == '_') {
-                        std::cout << "loser" << std::endl;
                         levelName = loadedFile[i].erase(0,1);
                         newLevel = true;
                 } else {
@@ -152,9 +150,10 @@ string cardinalResponse(char target) {
 
 void responseAction(int i) {
         while(loadedFile[i][0] != '\"') {
-                if(loadedFile[i][0] == '_')
+                if(loadedFile[i][0] == '_') {
                         levelName = loadedFile[i].erase(0,1);
                         newLevel = true;
+                }
                 if(loadedFile[i][0] == 't' || loadedFile[i][0] == 'n') {
                         bool newValue;
                         if(loadedFile[i][0] == 't')

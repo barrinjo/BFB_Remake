@@ -50,7 +50,7 @@ bool gameLoop() {
 void typewriter(std::string x) {
         std::cout << "OK," << std::endl;
         sleepMilli(500);
-        for(int i = 0; i < x.size(); i++) {
+        for(unsigned int i = 0; i < x.size(); i++) {
                 std::cout << x[i] << std::flush;
                 if(x[i] == '.') {
                         sleepMilli(300);
@@ -75,7 +75,7 @@ void loadCardinal() {
 void loadLevel() {
         std::string line;
         std::ifstream file(levelName);
-        for(int i = 0; i < loadedFile.size(); i++) {
+        for(unsigned int i = 0; i < loadedFile.size(); i++) {
                 loadedFile.pop_back();
         }
         loadedFile.clear();

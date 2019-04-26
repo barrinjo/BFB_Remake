@@ -16,6 +16,8 @@ string getInput();
 string response(string verb, string noun);
 string lineCheck(int i);
 void responseAction(int i);
+std::string helpString = "THE GOAL OF THIS GAME IS TO EXIT THE DUNGEON.  YOU CAN MOVE USING THE CARDINAL DIRECTIONS, AND INTERACT WITH ITEMS BY USING THEM OR TAKING THEM.  LOOK IN A DIRECTION, OR INSPECT VISIBLE ITEMS TO LEARN MORE ABOUT YOUR ENVIRONMENT.  EXCLUDING EXITING THE GAME, ALL COMMANDS MUST BE IN VERB-NOUN FORMAT EX:'WALK NORTH', 'SEARCH BAG', OR 'GRAB AXE'.";
+
 
 string response(string verb, string noun) {
         // specialCase(loc);
@@ -24,6 +26,10 @@ string response(string verb, string noun) {
         int i = 0;
         if(verb == "QUIT") {
                 exitFlag = true;
+                return "THANKS FOR PLAYING!";
+        }
+        if(verb == "HELP") {
+                return helpString;
         }
         while(true) {
                 std::string line = loadedFile[i];
@@ -32,10 +38,10 @@ string response(string verb, string noun) {
                         return lineCheck(i);
                 }
                 if(line == verb) {
-                        if(noun == "input") {
-                                flag = true;
-                        }
-                         verb_flag = true;
+                        // if(noun == "input") {
+                        //         flag = true;
+                        // }
+                        verb_flag = true;
                 }
                 if(line == "STOP")
                         verb_flag = false;
@@ -44,7 +50,7 @@ string response(string verb, string noun) {
                 i++;
                 if(i == loadedFile.size()-1) {
                         if(!verb_flag && !flag)
-                                return "SORRY, I DO NOT UNDERSTAND";
+                                return "I CAN'T DO THAT.";
                 }
         }
 }
@@ -77,8 +83,10 @@ string getInput() {
 
 string lineCheck(int i) {
         string line = loadedFile[i];
+        std::cout << line << std::endl;
         if(line[0] != 'f') {
-                if(line[0] == 's') {
+                if(line[0] == '_') {
+                        std::cout << "loser" << std::endl;
                         levelName = loadedFile[i].erase(0,1);
                         newLevel = true;
                 } else {
@@ -144,7 +152,7 @@ string cardinalResponse(char target) {
 
 void responseAction(int i) {
         while(loadedFile[i][0] != '\"') {
-                if(loadedFile[i][0] == 's')
+                if(loadedFile[i][0] == '_')
                         levelName = loadedFile[i].erase(0,1);
                         newLevel = true;
                 if(loadedFile[i][0] == 't' || loadedFile[i][0] == 'n') {

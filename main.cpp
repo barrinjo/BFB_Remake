@@ -6,3 +6,5 @@ int main(int argc, char const *argv[])
 
         return 0;
 }
+
+// XXX "GO" as an input breaks this fuckin shit

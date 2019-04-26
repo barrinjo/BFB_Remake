@@ -26,6 +26,7 @@ bool gameLoop() {
         // int turnCount = 0;
         while(!exitFlag) {
                 if(newLevel == true) {
+                        std::cout << "help" << std::endl;
                         loadLevel();
                 }
                 std::cout << "\033[2J\033[1;1H" << std::flush;

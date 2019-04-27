@@ -4,6 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include <vector>
 
 #include "global.h"
 #include "responseMap.h"
@@ -16,6 +17,7 @@ string getInput();
 string response(string verb, string noun);
 string lineCheck(int i);
 void responseAction(int i);
+bool synonym(string noun, string line);
 std::string helpString = "THE GOAL OF THIS GAME IS TO EXIT THE DUNGEON.  YOU CAN MOVE USING THE CARDINAL DIRECTIONS, AND INTERACT WITH ITEMS BY USING THEM OR TAKING THEM.  LOOK IN A DIRECTION, OR INSPECT VISIBLE ITEMS TO LEARN MORE ABOUT YOUR ENVIRONMENT.  EXCLUDING EXITING THE GAME, ALL COMMANDS MUST BE IN VERB-NOUN FORMAT EX:'WALK NORTH', 'SEARCH BAG', OR 'GRAB AXE'.";
 
 
@@ -37,7 +39,7 @@ string response(string verb, string noun) {
                         // return loadedFile[i + lineCheck(i)];
                         return lineCheck(i);
                 }
-                if(line == verb) {
+                if(synonym(verb, line)) {
                         // if(noun == "input") {
                         //         flag = true;
                         // }
@@ -45,7 +47,7 @@ string response(string verb, string noun) {
                 }
                 if(line == "STOP")
                         verb_flag = false;
-                if(verb_flag && line == noun)
+                if(verb_flag && synonym(noun, line))
                         flag = true;
                 i++;
                 if(i == loadedFile.size()-1) {
@@ -170,10 +172,25 @@ void responseAction(int i) {
         }
 }
 
-// void specialCase(std::string input) {
-//         if(input == "QUIT") {
-//                 return 0;
-//         }
-// }
+bool synonym(string noun, string line) {
+        std::vector<string> nounList;
+        std::vector<char> temp;
+        for(unsigned int i = 0; i < line.size(); i++) {
+                if(line[i] == '|') {
+                        string x(temp.begin(), temp.end());
+                        nounList.push_back(x);
+                        temp.clear();
+                        i++;
+                }
+                temp.push_back(line[i]);
+        }
+        string x(temp.begin(), temp.end());
+        nounList.push_back(x);
+        for(unsigned int i = 0; i < nounList.size(); i++) {
+                if(noun == nounList[i])
+                        return true;
+        }
+        return false;
+}
 
 #endif

@@ -22,11 +22,8 @@ void startGame() {
 }
 
 bool gameLoop() {
-        std::cout << "test" << std::endl;
-        // int turnCount = 0;
         while(!exitFlag) {
                 if(newLevel == true) {
-                        std::cout << "help" << std::endl;
                         loadLevel();
                 }
                 std::cout << "\033[2J\033[1;1H" << std::flush;
@@ -74,16 +71,16 @@ void loadCardinal() {
 
 void loadLevel() {
         std::string line;
-        std::ifstream file(levelName);
-        for(unsigned int i = 0; i < loadedFile.size(); i++) {
-                loadedFile.pop_back();
-        }
+        std::ifstream file("levels/" + levelName);
         loadedFile.clear();
         if(file.is_open()) {
                 while(getline(file, line)) {
                         // std::cout << line << std::endl;
                         loadedFile.push_back(line);
                 }
+        } else {
+                std::cout << levelName << " missing." << std::endl;
+                exitFlag = true;
         }
         file.close();
         initMap(levelName);
